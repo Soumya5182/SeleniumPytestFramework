@@ -5,7 +5,8 @@ from PageObject.OrderConfirmationPage import OrderConfirm
 from PageObject.ShopPage import ShopPage
 
 
-test_data_path = '../data/test_e2ewithupdatedata.json'  #this is the json file path
+#test_data_path = '../data/test_e2ewithupdatedata.json'  #this is the json file path
+test_data_path = 'C:/Users/Hello Soumya/pythonbasic/python_selenium_pytestframework/Data/test_e2ewithupdatedata.json'
 with open(test_data_path) as f: #At here open the the json file
    test_data = json.load(f) # this is the load method  json data and convert to the python object here "test__data"
    test_list = test_data["data"] # here declare one variable for call the json dictionary key name "Data"
