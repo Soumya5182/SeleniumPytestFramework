@@ -1,0 +1,64 @@
+pool:
+
+  name: Azure Pipelines
+
+steps:
+
+- task: UsePythonVersion@0
+
+  displayName: 'Use Python 3.10.6'
+
+  inputs:
+
+    versionSpec: 3.10.6
+
+
+
+- script: |
+   pip install selenium==4.12.0
+   pip install pytest
+   pip install pytest-html
+   pip install pytest-xdist
+   pip install pytest-nunit
+
+  displayName: 'Install Plugins'
+
+
+
+- script: 'pytest -rA --html=.\reports\Report.html --self-contained-html --doctest-modules --nunitxml=nunit/test-results.xml -n 5 --browsername %browser%'
+
+  displayName: 'Run Python Tests'
+
+
+
+- task: PublishPipelineArtifact@1
+
+  displayName: 'Publish Pipeline Artifact'
+
+  inputs:
+
+    targetPath: 'D:\a\1\s\reports'
+
+    artifact: 'Test_Reports'
+
+
+
+- task: PublishTestResults@2
+
+  displayName: 'Publish Test Results'
+
+  inputs:
+
+    testResultsFormat: NUnit
+
+    testResultsFiles: '**/*-results.xml'
+
+
+
+- task: JakubRumpca.azure-pipelines-html-report.PublishHtmlReport.PublishHtmlReport@1
+
+  displayName: 'Publish Html Report'
+
+  inputs:
+
+    reportDir: 'D:\a\1\s\reports\Report.html'
