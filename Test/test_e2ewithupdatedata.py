@@ -21,8 +21,8 @@ def test_e2e(browserInstance,test_list_item): #Here call the "browserInstance" b
     driver.maximize_window()
 
     # this class used for the login page
-    login_page = Loginpage(driver)
-    login_page.login(test_list_item["userEmail"],test_list_item["userPassword"])
+    login_page = Loginpage(driver)  #here login  page is the object of the "Loginpage()" class
+    login_page.login(test_list_item["userEmail"],test_list_item["userPassword"]) #Here call the method of the "Loginpgae()" class.
 
     # this class used for the checd the product out page
     shop_page = ShopPage(driver)
